@@ -1,1 +1,1 @@
-# CMake study
+# CMake Study
