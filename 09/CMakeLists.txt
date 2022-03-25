@@ -29,6 +29,7 @@ message("FOUND: SQLite version = ${SQLITE_VER_STRING}")
 set(SRC_LIB_FILE    ${SQILITE3_SOURCE_PATH}/sqlite${SQLITE_VER_MAJOR}.c)
 set(SRC_SHELL_FILE  ${SQILITE3_SOURCE_PATH}/shell.c)
 file(GLOB HDR_FILES ${SQILITE3_SOURCE_PATH}/*.h)
+set(SRC_RES_FILE    ${SQILITE3_SOURCE_PATH}/${PROJECT_NAME}.rc)
 
 #编译参数
 option(SQLITE_BUILD_STATIC  "Build SQLite static library" ON) # 是否编译静态库
@@ -53,7 +54,7 @@ if (SQLITE_BUILD_SHARED)
     endif()
 endif()
 
-add_executable(${PROJECT_NAME} ${SRC_SHELL_FILE} ${SRC_LIB_FILE}) # 编译 shell 可执行文件
+add_executable(${PROJECT_NAME} ${SRC_SHELL_FILE} ${SRC_LIB_FILE} ${SRC_RES_FILE}) # 编译 shell 可执行文件
 
 #安装
 set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/SDK) #指定安装目录(如果不指定目录，默认是 C:\Program Files (x86)\sqlite3)
