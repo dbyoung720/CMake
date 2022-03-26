@@ -25,11 +25,11 @@ list(GET _sqlite_ver_LIST 1 SQLITE_VER_MINOR)
 list(GET _sqlite_ver_LIST 2 SQLITE_VER_PATCH)
 message("FOUND: SQLite version = ${SQLITE_VER_STRING}")
 
-#编译 sqlite3 源码要使用到的文件
+#指定编译 sqlite3 源码要使用到的文件
 set(SRC_LIB_FILE    ${SQILITE3_SOURCE_PATH}/sqlite${SQLITE_VER_MAJOR}.c)
 set(SRC_SHELL_FILE  ${SQILITE3_SOURCE_PATH}/shell.c)
-file(GLOB HDR_FILES ${SQILITE3_SOURCE_PATH}/*.h)
 set(SRC_RES_FILE    ${SQILITE3_SOURCE_PATH}/${PROJECT_NAME}.rc)
+file(GLOB HDR_FILES ${SQILITE3_SOURCE_PATH}/*.h)
 
 #编译参数
 option(SQLITE_BUILD_STATIC  "Build SQLite static library" ON) # 是否编译静态库
@@ -50,7 +50,7 @@ endif()
 if (SQLITE_BUILD_SHARED)
     add_library(${SQLITE_SHARED_NAME} SHARED ${SRC_LIB_FILE}) # 编译动态库
     if (SQLITE_WIN_BUILD)
-        set_target_properties(${SQLITE_SHARED_NAME} PROPERTIES DEFINE_SYMBOL "SQLITE_API=__declspec(dllexport)")
+        set_target_properties(${SQLITE_SHARED_NAME} PROPERTIES DEFINE_SYMBOL "SQLITE_API=__declspec(dllexport)") # VC 下 DLL 函数申明
     endif()
 endif()
 
