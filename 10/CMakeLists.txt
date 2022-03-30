@@ -50,7 +50,7 @@ target_link_libraries(mtest5 ${LMDB_STATIC_NAME})
 
 # test6 单独处理
 add_executable(mtest6 ${LMDB_SOURCE_PATH}/mtest6.c ${SRC_LIB_FILE}) 
-target_compile_definitions(mtest6 PUBLIC MDB_DEBUG)
+target_compile_definitions(mtest6 PUBLIC MDB_DEBUG) # 添加宏定义
 
 #安装
 set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/SDK) #指定安装目录(如果不指定目录，默认是 C:\Program Files (x86)\lmdb)
